@@ -3093,7 +3093,7 @@
   function exportCurrent() {
     if (!state.activeCalculator || !state.lastResult) return;
     const lines = [
-      `RBX Engenharia Calc PRO v2.7.4 - ${state.activeCalculator.name}`,
+      `RBX Engenharia Calc PRO v2.7.5 - ${state.activeCalculator.name}`,
       `${state.lastResult.label}: ${state.lastResult.value}`,
       '',
       ...state.lastResult.details.map(([l,v]) => `${l}: ${v}`),

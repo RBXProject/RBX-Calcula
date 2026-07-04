@@ -1,4 +1,4 @@
-# RBX Engenharia Calc PRO v2.7.4
+# RBX Engenharia Calc PRO v2.7.5
 
 Versão profissional da plataforma RBX com calculadoras técnicas, diagramas intuitivos, memória de cálculo, validações e módulos ampliados para obras, produção, custos e máquinas.
 
@@ -24,22 +24,22 @@ Abra `index.html` no navegador ou publique a pasta em um servidor/GitHub Pages. 
 Os resultados são estimativas preliminares e não substituem projeto, ART/RRT, normas aplicáveis, ensaios, validação de responsável técnico ou medições reais de campo.
 
 
-## v2.7.4
+## v2.7.5
 - Removido o botão/identificador “DE” do canto superior direito.
 
-## v2.7.4 — Calculadoras essenciais ampliadas
+## v2.7.5 — Calculadoras essenciais ampliadas
 - Adicionadas 27 novas calculadoras essenciais para obras, instalações, acabamento, drenagem, pavimentação, locação, segurança e canteiro.
 - Total ampliado para 124 calculadoras.
 - Mantido padrão RBX, menu anterior, cards clicáveis, histórico, favoritos, exportação e demo HTML.
 
 
-## v2.7.4 — Pesquisa ampla de calculadoras essenciais
+## v2.7.5 — Pesquisa ampla de calculadoras essenciais
 - Pesquisa ampliada em calculadoras técnicas de engenharia civil, elétrica, hidráulica, mecânica, produção, gestão de obras, máquinas, equipamentos, segurança do trabalho, canteiro e ambientes industriais.
 - Adicionadas 70 novas calculadoras e 6 novas categorias técnicas.
 - Total ampliado para 194 calculadoras.
 - Mantido PWA, demo HTML independente, menu lateral anterior, cards clicáveis e botão DE removido.
 
-## v2.7.4 — Auditoria profissional e correção estrutural
+## v2.7.5 — Auditoria profissional e correção estrutural
 - Corrigida a inconsistência de categorias técnicas sem calculadoras.
 - Adicionadas 70 calculadoras profissionais reais nas áreas elétrica, hidráulica, mecânica, segurança, industrial e gestão de obras.
 - Total real do catálogo: 194 calculadoras.
@@ -50,7 +50,7 @@ Os resultados são estimativas preliminares e não substituem projeto, ART/RRT, 
 - Observação: os resultados são estimativas técnicas preliminares e precisam de validação por profissional habilitado para uso executivo definitivo.
 
 
-## v2.7.4 — Correção de funcionamento dos botões
+## v2.7.5 — Correção de funcionamento dos botões
 - Corrigido erro de inicialização no diagrama das calculadoras profissionais.
 - Removido bloco duplicado de calculadoras rápidas que deixava o catálogo pesado e instável.
 - Cards, favoritos, filtros, menu, abas, histórico, salvar, exportar, imprimir e voltar foram estabilizados.
