@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07162e" />
+  <meta name="description" content="RBX Calcula — calculadoras técnicas com diagramas intuitivos, obras, máquinas, produção, custos e memória de cálculo." />
+  <title>RBX Engenharia Calc PRO v2.7.4</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
+  <link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-block">
+        <img class="brand-logo" src="assets/branding/rbx-emblem.png" alt="Logo RBX Solutions" />
+        <div>
+          <strong>RBX</strong>
+          <small>Solutions</small>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <button class="nav-item active" data-view="home">
+          <span class="nav-icon">⌂</span><span>Visão geral</span>
+        </button>
+        <button class="nav-item" data-view="calculators">
+          <span class="nav-icon">∑</span><span>Calculadoras</span>
+        </button>
+        <button class="nav-item" data-view="favorites">
+          <span class="nav-icon">★</span><span>Favoritos</span><span class="nav-count" id="favoriteCount">0</span>
+        </button>
+        <button class="nav-item" data-view="history">
+          <span class="nav-icon">↺</span><span>Histórico</span><span class="nav-count" id="historyCount">0</span>
+        </button>
+        <button class="nav-item" data-view="about">
+          <span class="nav-icon">i</span><span>Sobre</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-card">
+        <span class="sidebar-card-icon">◈</span>
+        <strong>Modo offline</strong>
+        <p>Instale no computador e use mesmo sem internet.</p>
+        <button class="ghost-button full" id="installButton" hidden>Instalar aplicativo</button>
+      </div>
+
+      <div class="sidebar-footer">
+        <span>RBX Engenharia Calc</span>
+        <small>PRO v2.7.4</small>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="icon-button mobile-only" id="menuButton" aria-label="Abrir menu">☰</button>
+        <div class="top-search">
+          <span class="search-icon">⌕</span>
+          <input id="globalSearch" type="search" placeholder="Buscar calculadoras, obras..." autocomplete="off" />
+          <kbd>Ctrl</kbd><kbd>K</kbd>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button mini" id="themeButton" aria-label="Alternar tema" title="Alternar tema">◐</button>
+          <button class="primary-button" id="newEstimateButton">＋ Novo cálculo</button>
+          <button class="icon-button mini" id="notificationButton" aria-label="Notificações">◌</button>
+        </div>
+      </header>
+
+      <section class="page" id="homeView">
+        <div class="page-hero compact">
+          <div>
+            <span class="eyebrow">VISÃO GERAL</span>
+            <h1>Dashboard técnico RBX</h1>
+            <p>Catálogo executivo de calculadoras com diagramas intuitivos, memória de cálculo e resultados rápidos.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary-button" data-jump="calculators">Abrir catálogo</button>
+            <button class="ghost-button" data-open-featured="vertical-barrel">Abrir reservatório</button>
+          </div>
+        </div>
+
+        <div class="stats-grid stats-grid-dark">
+          <article class="stat-card"><small>Calculadoras</small><strong id="totalCalculators">0</strong><span>disponíveis</span></article>
+          <article class="stat-card"><small>Categorias</small><strong id="totalCategories">0</strong><span>especialidades</span></article>
+          <article class="stat-card"><small>Favoritos</small><strong id="favoriteStat">0</strong><span>atalhos salvos</span></article>
+          <article class="stat-card"><small>Histórico</small><strong id="historyStat">0</strong><span>cálculos locais</span></article>
+        </div>
+
+        <div class="content-section">
+          <div class="section-heading"><div><span class="eyebrow">FERRAMENTAS</span><h2>Destaques do catálogo</h2></div><button class="text-button" data-jump="calculators">Ver catálogo completo</button></div>
+          <div class="calculator-grid" id="featuredGrid"></div>
+        </div>
+
+        <div class="content-section">
+          <div class="section-heading"><div><span class="eyebrow">ESTRUTURA</span><h2>Especialidades</h2></div></div>
+          <div class="category-grid" id="categoryGrid"></div>
+        </div>
+      </section>
+
+      <section class="page hidden" id="calculatorsView">
+        <div class="page-header catalog-header">
+          <div>
+            <span class="eyebrow">FERRAMENTAS</span>
+            <h1>Catálogo de calculadoras</h1>
+            <p><strong id="resultCount">0</strong> calculadoras disponíveis · fórmulas com memória de cálculo e diagramas técnicos intuitivos.</p>
+          </div>
+        </div>
+        <div class="catalog-toolbar">
+          <div class="catalog-search"><span>⌕</span><input id="catalogSearchMirror" type="search" placeholder="Buscar por nome, categoria ou palavra‑chave..." autocomplete="off"></div>
+          <div class="catalog-actions">
+            <button class="icon-button" id="clearFiltersButton" title="Limpar filtros">☰</button>
+            <select id="sortSelect" aria-label="Ordenação"><option value="recommended">Por categoria</option><option value="az">Nome A–Z</option><option value="category">Agrupar categoria</option></select>
+          </div>
+        </div>
+        <div class="category-chips" id="categoryChips"></div>
+        <div class="calculator-grid" id="calculatorGrid"></div>
+        <div class="empty-state hidden" id="calculatorEmpty"><span>⌕</span><h3>Nenhuma calculadora encontrada</h3><p>Tente outro termo de busca ou remova os filtros.</p></div>
+      </section>
+
+      <section class="page hidden" id="calculatorDetailView">
+        <div class="detail-shell">
+          <div class="print-report-header" aria-hidden="true">
+            <div class="print-meta-line">
+              <span id="printMetaDate">—</span>
+              <span id="printMetaTitle">RBX Calcula — Calculadoras técnicas de engenharia | RBX Solutions</span>
+            </div>
+            <div class="print-summary-card">
+              <div class="print-summary-icon"><span id="printSummaryIcon">◌</span></div>
+              <div class="print-summary-copy">
+                <span class="eyebrow" id="printCalcCategory">Categoria</span>
+                <h1 id="printCalcName">Calculadora</h1>
+                <p id="printCalcDescription">Descrição da calculadora</p>
+              </div>
+            </div>
+            <div class="print-brand-row">
+              <div class="print-brand-company">
+                <img class="print-brand-logo" src="assets/branding/rbx-emblem.png" alt="RBX Solutions" />
+                <div>
+                  <small>RBX SOLUTIONS · RBX CALCULA</small>
+                  <strong id="printBrandCalcName">Calculadora</strong>
+                  <span id="printBrandCalcCategory">Categoria</span>
+                </div>
+              </div>
+              <div class="print-brand-issued">
+                <small>Emitido em</small>
+                <strong id="printIssuedAt">—</strong>
+              </div>
+            </div>
+          </div>
+
+          <button class="back-link" id="backToCatalogButton">← Voltar</button>
+
+          <div class="detail-top-panel">
+            <div class="detail-heading">
+              <div class="detail-icon-box"><span id="detailIcon">◌</span></div>
+              <div class="detail-heading-copy">
+                <span class="eyebrow" id="detailCategory">Categoria</span>
+                <h1 id="detailTitle">Calculadora</h1>
+                <p id="detailDescription">Descrição da calculadora</p>
+              </div>
+            </div>
+            <div class="detail-actions-bar">
+              <select id="detailProjectSelect"><option>Sem obra vinculada</option></select>
+              <button class="icon-button mini" id="detailFavoriteButton" title="Favoritar">☆</button>
+              <button class="ghost-button" id="duplicateButton">Duplicar</button>
+              <button class="ghost-button" id="printButton">Imprimir</button>
+              <button class="ghost-button" id="exportButton">Exportar</button>
+              <button class="primary-button" id="saveButton">Salvar</button>
+            </div>
+          </div>
+
+          <div class="detail-grid">
+            <section class="detail-card form-card">
+              <div class="detail-card-title" id="formCardTitle">DADOS DE ENTRADA</div>
+              <form id="calculatorForm" class="calculator-form"></form>
+              <div class="validation-summary hidden" id="validationSummary" aria-live="polite"></div>
+              <div class="detail-form-actions">
+                <button class="primary-button full" type="button" id="calculateButton">▷ Calcular</button>
+                <button class="ghost-button full" type="button" id="resetCalculatorButton">🗑 Limpar</button>
+                <label class="auto-calc"><input type="checkbox" id="autoCalcToggle" checked> Cálculo automático ao editar</label>
+              </div>
+            </section>
+
+            <section class="detail-card diagram-card">
+              <div class="detail-card-title">DIAGRAMA TÉCNICO</div>
+              <div class="diagram-holder" id="detailDiagram"></div>
+              <div class="diagram-meta" id="diagramMeta"></div>
+              <div class="diagram-note" id="diagramNote"></div>
+            </section>
+
+            <div class="result-column">
+              <section class="detail-card result-workspace highlighted">
+                <div class="result-tabs" role="tablist" aria-label="Detalhes do resultado">
+                  <button class="result-tab active" type="button" data-result-tab="summary">Resultado</button>
+                  <button class="result-tab" type="button" data-result-tab="materials">Materiais</button>
+                  <button class="result-tab" type="button" data-result-tab="memory">Memória</button>
+                  <button class="result-tab" type="button" data-result-tab="notes">Técnica</button>
+                </div>
+
+                <div class="result-tab-panel active" data-result-panel="summary">
+                  <div class="detail-card-title accent">RESULTADO PRINCIPAL</div>
+                  <div class="result-big">
+                    <small id="resultPrimaryLabel">Resultado</small>
+                    <strong id="resultPrimaryValue">0</strong>
+                  </div>
+                  <div class="result-secondary" id="resultSecondary"></div>
+                </div>
+
+                <div class="result-tab-panel" data-result-panel="materials">
+                  <div class="detail-card-title">MATERIAIS / QUANTITATIVOS</div>
+                  <div class="materials-table" id="materialsTable"></div>
+                </div>
+
+                <div class="result-tab-panel" data-result-panel="memory">
+                  <div class="detail-card-title">MEMÓRIA DE CÁLCULO</div>
+                  <div class="memory-list" id="memoryList"></div>
+                </div>
+
+                <div class="result-tab-panel" data-result-panel="notes">
+                  <div class="detail-card-title">OBSERVAÇÕES TÉCNICAS</div>
+                  <div class="technical-notes" id="technicalNotes"></div>
+                </div>
+              </section>
+            </div>
+          </div>
+          <div class="print-report-footer" aria-hidden="true">
+            <div class="print-footer-brand">
+              <img class="print-footer-logo" src="assets/branding/rbx-emblem.png" alt="RBX Solutions" />
+              <div>
+                <strong>RBX Calcula · RBX Solutions</strong>
+                <span>Estimativas técnicas preliminares — não substituem projeto de engenharia com ART/RRT.</span>
+              </div>
+            </div>
+            <div class="print-footer-copy">© 2026</div>
+            <div class="print-footer-url" id="printFooterUrl">https://rbxcalcula.local/</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page hidden" id="favoritesView">
+        <div class="page-header"><div><span class="eyebrow">FAVORITOS</span><h1>Calculadoras favoritas</h1><p>Seus atalhos e cartões salvos.</p></div></div>
+        <div class="calculator-grid" id="favoritesGrid"></div>
+        <div class="empty-state" id="favoritesEmpty"><span>☆</span><h3>Você ainda não possui favoritos</h3><p>Marque a estrela de uma calculadora para salvá-la aqui.</p></div>
+      </section>
+
+      <section class="page hidden" id="historyView">
+        <div class="page-header"><div><span class="eyebrow">MEUS CÁLCULOS</span><h1>Histórico</h1><p>Resultados recentes armazenados localmente.</p></div><button class="danger-button" id="clearHistoryButton">Limpar histórico</button></div>
+        <div class="history-list" id="historyList"></div>
+        <div class="empty-state" id="historyEmpty"><span>↺</span><h3>Nenhum cálculo salvo</h3><p>Utilize uma calculadora e clique em salvar.</p></div>
+      </section>
+
+      <section class="page hidden" id="aboutView">
+        <div class="page-header"><div><span class="eyebrow">RBX SOLUTIONS</span><h1>Plataforma executiva</h1><p>Padrão visual técnico com foco em produtividade, apresentação e apoio a orçamentos e obra.</p></div></div>
+        <div class="about-grid">
+          <article class="about-card wide"><h2>Layout inspirado em painel técnico</h2><p>Esta versão foi reconstruída para ficar semelhante às referências: catálogo em cards, páginas de cálculo com diagrama técnico, bloco de resultado e memória de cálculo.</p></article>
+          <article class="about-card"><h3>Uso local ou online</h3><p>O projeto pode ser aberto no VS Code, executado localmente e publicado depois.</p></article>
+          <article class="about-card"><h3>Aviso técnico</h3><p>Os resultados são estimativas preliminares e devem ser validados por profissional habilitado.</p></article>
+        </div>
+      </section>
+
+      <footer class="main-footer">
+        <span>© 2026 RBX Solutions — RBX Calcula</span>
+        <span>Resultados são estimativas · não substituem projeto de engenharia ou ART/RRT.</span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
